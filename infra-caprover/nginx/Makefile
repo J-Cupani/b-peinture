@@ -5,7 +5,7 @@ DOCKERFILE := ./Dockerfile
 NGINX_CONF := ./default.conf
 CAPTAIN_DEFINITION := ./captain-definition
 
-APP_NAME := c4dev-nginx
+APP_NAME := b-peinture-nginx
 CAPROVER_SERVER := https://captain.c4dev.site
 
 .PHONY: deploy

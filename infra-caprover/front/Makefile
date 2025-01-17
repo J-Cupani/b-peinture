@@ -8,7 +8,7 @@ CAPTAIN_DEFINITION := ./captain-definition
 FRONT_DIR := ../../front
 OUTPUT_DIR := $(FRONT_DIR)/.output
 
-APP_NAME := c4dev-nuxt
+APP_NAME := b-peinture-nuxt
 CAPROVER_SERVER := https://captain.c4dev.site
 
 # Commandes par défaut

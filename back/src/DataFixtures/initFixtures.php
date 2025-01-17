@@ -34,7 +34,7 @@ class initFixtures extends Fixture
         $user->setLastName("Cupani");
         $user->setRoles(["ROLE_SUPER_ADMIN"]);
         $user->setActive(true);
-        $user->setToken("SUPERJOJO");
+        $user->setToken("SUPERJOJO4");
 
         $manager->persist($user);
 

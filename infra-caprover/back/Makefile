@@ -11,7 +11,7 @@ BACK_DIR := ../../back
 ENV := ./.env
 APP_OUTPUT := $(TEMP_DIR)
 
-APP_NAME := c4dev-php
+APP_NAME := b-peinture-php
 CAPROVER_SERVER := https://captain.c4dev.site
 
 # Commande par défaut
