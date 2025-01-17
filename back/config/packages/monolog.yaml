@@ -1,0 +1,11 @@
+monolog:
+    handlers:
+        main:
+            type: stream
+            path: "%kernel.logs_dir%/%kernel.environment%.log"
+            level: info   # Capture à partir du niveau debug (inclut warning et error)
+            channels: ["!event"]
+        console:
+            type: console
+            channels: ["!event", "!doctrine"]
+            process_psr_3_messages: false

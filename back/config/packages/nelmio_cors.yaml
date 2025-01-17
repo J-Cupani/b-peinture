@@ -1,0 +1,14 @@
+nelmio_cors:
+    defaults:
+        allow_credentials: true
+        allow_origin: ['%env(CORS_ALLOW_ORIGIN)%']  # Utilisation de la variable d'environnement
+        allow_headers: ['Content-Type', 'Authorization']
+        allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+        expose_headers: ['Link']
+        max_age: 3600
+    paths:
+        '^/v1/':  # Applique CORS pour les requêtes vers /api/
+            allow_origin: ['%env(CORS_ALLOW_ORIGIN)%']
+            allow_headers: ['Content-Type', 'Authorization', 'X-Requested-With']
+            allow_methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
+            max_age: 3600

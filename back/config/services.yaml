@@ -1,0 +1,51 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    email_sender: '%env(EMAIL_SENDER)%'
+    email_notification: '%env(EMAIL_NOTIFICATION)%'
+    locale: 'fr'
+    uploads_directory: '%kernel.project_dir%/public/uploads'
+    uploads_web_path: '%env(COMMON_UPLOAD_DIR)%'
+    env(FRONT_URL): '%env(FRONT_URL)%'
+    front_url: '%env(FRONT_URL)%'
+twig:
+    globals:
+        front_url: '%env(FRONT_URL)%'
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    # Définition du prefix pour les tables
+    App\Doctrine\TablePrefix:
+        arguments:
+            $prefix: '%env(string:DATABASE_PREFIX)%'
+        public: true
+
+    # Service d'upload
+    App\Service\FileUploaderService:
+        arguments:
+            $defaultTargetDirectory: '%uploads_directory%'
+            $webPathUpload: '%uploads_web_path%'
+
+    App\EventSubscriber\DebugSubscriber:
+        tags:
+            - { name: 'kernel.event_subscriber' }
+
+    App\Service\SerializeDataToJsonService:
+        arguments:
+            $frontUrl: '%front_url%'

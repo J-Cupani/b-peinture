@@ -1,0 +1,63 @@
+# Ignorer les dépendances Node.js
+/front/node_modules
+/front/.nuxt
+/front/.output
+/front/client
+
+# Ignorer tout le contenu dans le dossier log
+/log/*
+
+# Ne pas ignorer les sous-dossiers "nginx" et "symfony"
+!/log/nginx/
+/log/nginx/*
+!/log/symfony/
+/log/symfony/*
+
+# Ne pas ignorer les fichiers .gitkeep pour maintenir la structure des dossiers
+!/log/.gitkeep
+!/log/nginx/.gitkeep
+!/log/symfony/.gitkeep
+
+# Ignorer les fichiers d'environnement sensibles (.env)
+/infra/.env.prod
+.env
+.env.prod
+.env.local
+.env.*.local
+/front/.env
+
+# Ignorer les fichiers spécifiques à macOS et Windows
+.DS_Store
+
+# Ignorer les répertoires de build pour le front et le back
+/back/var
+/back/vendor
+/back/public/uploads/*
+!/back/public/uploads/.gitkeep
+/back/public/media/*
+!/back/public/media/.gitkeep
+/back/symfony.lock
+/back/composer.lock`
+
+# Ignorer les caches et logs de Symfony (mais garder les dossiers)
+# Cache de Symfony
+/back/var/cache/*
+!/back/var/cache/.gitkeep
+
+# Logs de Symfony
+/back/var/log/*
+!/back/var/log/.gitkeep
+
+# Ignorer les fichiers de configuration spécifiques à l'IDE ou éditeur de texte
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignorer les fichiers de verrouillage npm, yarn, pnpm pour la gestion des dépendances
+/front/package-lock.json
+/front/yarn.lock
+/front/.pnpm-lock.yaml
+
+
+/infra-dev/db_data

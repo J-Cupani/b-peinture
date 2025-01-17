@@ -1,0 +1,85 @@
+version: "3.9"
+
+services:
+    # Base de données MariaDB
+    db:
+        image: mariadb:10.6
+        container_name: mariadb
+        volumes:
+            - ./db_data:/var/lib/mysql
+        env_file:
+            - ./.env
+        ports:
+            - "3306:3306"
+        networks:
+            - mynetwork
+
+    # PHP-FPM pour Symfony
+    php:
+        build: ./back/php-fpm  # Point vers le Dockerfile pour PHP
+        container_name: php
+        environment:
+            - APP_ENV=dev  # Définit l'environnement de dev pour Symfony
+        volumes:
+            - ../back/.env:/var/www/symfony/.env  # Monte .env comme .env
+            - ../back:/var/www/symfony:cached  # Monte le code source Symfony
+        ports:
+            - "9001:9001"  # PHP-FPM écoute en interne sur le port 9001
+        env_file:
+            - ./.env
+        networks:
+            - mynetwork
+
+    # Application Nuxt.js (Frontend)
+    nuxt:
+        build:
+            context: ../  # Le contexte est le dossier parent de 'infra' (racine du projet)
+            dockerfile: infra-dev/front/Dockerfile
+        container_name: nuxt
+        environment:
+            HOST: '0.0.0.0'  # Permet à Nuxt d'écouter sur toutes les interfaces
+            PORT: '3000'  # Définit le port d'écoute interne de Nuxt
+            NODE_TLS_REJECT_UNAUTHORIZED: '0' # Désactive la vérification des certificats SSL
+
+        volumes:
+            - ../front:/var/www/html/nuxt:cached  # Monte le répertoire front
+            - /var/www/html/nuxt/node_modules
+        ports:
+            - "3000:3000"  # Expose le port 3000 vers l'extérieur et pour Nginx
+        networks:
+            - mynetwork
+
+    # Nginx pour agir comme reverse proxy
+    nginx:
+        image: nginx:alpine
+        container_name: nginx
+        ports:
+            - "8081:80"  # HTTP
+            - "8443:443"  # HTTPS
+        volumes:
+            - ./back/nginx/nginx.conf:/etc/nginx/nginx.conf  # Configuration principale de Nginx
+            - ./back/nginx/config.conf:/etc/nginx/conf.d/config.conf  # Configuration supplémentaire pour Nuxt et Symfony
+            - ./back/nginx/ssl:/etc/nginx/ssl:ro  # Monte les certificats SSL pour HTTPS
+            - ../back/public/uploads:/var/www/symfony/public/uploads  # Volume pour les fichiers uploadés
+            - ../back/public/media:/var/www/symfony/public/media  # Volume pour les fichiers médias
+        depends_on:
+            - php  # S'assure que PHP démarre avant Nginx
+            - nuxt  # S'assure que Nuxt démarre avant Nginx
+        networks:
+            - mynetwork
+
+    mailhog:
+        image: mailhog/mailhog
+        container_name: mailhog
+        ports:
+            - "1025:1025" # Port SMTP
+            - "8025:8025" # Interface Web
+        networks:
+            - mynetwork
+# Définition du réseau Docker
+networks:
+    mynetwork:
+        driver: bridge
+
+volumes:
+    db_data:

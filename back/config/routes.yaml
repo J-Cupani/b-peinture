@@ -1,0 +1,15 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+# Empêcher Symfony d'intercepter les requêtes pour /uploads
+uploads:
+    path: /uploads
+    controller: null
+
+# Empêcher Symfony d'intercepter les requêtes pour /media/cache
+media_cache:
+    path: /media/cache
+    controller: null
