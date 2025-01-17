@@ -17,13 +17,13 @@ COPY front/package.json front/package-lock.json ./
 COPY front/ ./
 
 # Installer les dépendances
-RUN npm install --legacy-peer-deps --verbose
+RUN yarn install --legacy-peer-deps
 
 # Exécuter les scripts postinstall
-RUN npm run postinstall
+RUN yarn run postinstall
 
 ENV HOST 0.0.0.0
 EXPOSE 3000
 
 # Démarrer Nuxt.js en mode développement
-CMD ["npm", "run", "dev"]
+CMD ["yarn", "dev"]

@@ -23,7 +23,7 @@ build:
 		echo "Erreur : Le dossier $(FRONT_DIR) est introuvable."; \
 		exit 1; \
 	fi
-	cd $(FRONT_DIR) && npm install && npm run build
+	cd $(FRONT_DIR) && yarn install && yarn run build
 
 # Étape 2 : Ajouter Dockerfile et captain-definition à .output
 .PHONY: prepare-output

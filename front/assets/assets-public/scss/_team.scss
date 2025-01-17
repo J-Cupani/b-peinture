@@ -1,0 +1,301 @@
+/* 13. Team Css */
+.team-space {
+    padding: 0px 105px;
+    @include mq(xl){
+        padding: 0px 30px;
+      }
+      @include mq(lg){
+        padding: 0px 15px;
+      }
+      @include mq(md){
+        padding: 0px 0px;
+      }
+      @include mq(xs){
+        padding: 0px 0px;
+      }
+}
+.kteam {
+    border-bottom: 1px solid $border-color;
+    position: relative;
+    &:hover{
+        &::before{
+            left: 0;
+            right: auto;
+            width: 100%;
+        }
+    }
+    &::before{
+        position: absolute;
+        content: '';
+        left: auto;
+        right: 0;
+        width: 0px;
+        bottom: 0;
+        background-color: $theme-color;
+        height: 1px;
+        transition: all 0.5s ease-in-out;
+    }
+    &-img {
+        overflow: hidden;
+        position: relative;
+        &-social {
+            position: absolute;
+            left: 0px;
+            bottom: -50px;
+            right: 0px;
+            margin: 0 auto;
+            text-align: center;
+            @include transition(0.3s);
+            & a {
+                height: 36px;
+                width: 36px;
+                line-height: 38px;
+                vertical-align: middle;
+                border-radius: 50%;
+                text-align: center;
+                background: $white-color;
+                color: $heading-color;
+                display: inline-block;
+                margin: 0px 5px;
+                & i {
+                    transform: rotate(0deg); 
+                    @include transition(0.3s);
+                }
+                &:hover {
+                    background: $theme-color;
+                    color: $white-color;
+                    & i {
+                        transform: rotate(360deg);
+                    }
+                }
+            }
+        }
+    }
+    & img {
+        width: 100%;
+        -webkit-filter: grayscale(100%);
+        -ms-filter: grayscale(100%);
+        -moz-filter: grayscale(100%);
+    }
+    &:hover {
+        & img {
+            transform: scale3d(1.1, 1.1, 1.1); 
+            -webkit-filter: grayscale(0%);
+            -ms-filter: grayscale(0%);
+            -moz-filter: grayscale(0%);
+        }
+        & .kteam-img-social {
+            bottom: 30px;
+        }
+    }
+}
+.kteam-text {
+    padding: 25px 25px;
+    & span {
+        font-size: 14px;
+        font-weight: 700;
+        display: block;
+        letter-spacing: 1px;
+    }
+}
+.kteam-title {
+    font-size: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    &:hover a {
+        color: $theme-color;
+    }
+}
+.team-active {
+    .swiper-slide {
+        height: auto;
+    }
+}
+
+
+//team details area
+.founder-sub__title {
+    font-size: 14px;
+    font-weight: 400;
+    color: $theme-color;
+    text-transform: capitalize;
+}
+.founder-section__title {
+	font-size: 50px;
+}
+.paragraph-2 {
+    color: #777a7e;
+    font-size: 16px;
+    line-height: 2;
+    font-weight: 500;
+}
+.team {
+    &__founder {
+        &-main {
+            margin-left: 50px;
+            @include mq(lg) {
+                margin-left: 0;
+            }
+            @include mq(md) {
+                margin-left: 0;
+            }
+            @include mq(xs) {
+                margin-left: 0;
+            }
+            @include mq(sm) {
+                margin-left: 0;
+            }
+        }
+        &-thumb {
+            padding-right: 20px;
+            @include mq(md) {
+                padding-right: 0;
+            }
+            @include mq(xs) {
+                padding-right: 0;
+            }
+            @include mq(sm) {
+                padding-right: 0;
+            }
+            img {
+                border-radius: 6px;
+                width: 100%;
+            }
+        }
+        &-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        &-item {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+            &-icon {
+                width: 50px;
+                height: 50px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: space-evenly;
+                border-radius: 50px;
+                overflow: hidden;
+                position: relative;
+                color: $theme-color;
+                &:after {
+                    position: absolute;
+                    content: "";
+                    height: 100%;
+                    width: 100%;
+                    top: 0;
+                    left: 0;
+                    z-index: -1;
+                    background: $border-color;
+                }
+            }
+        }
+        &-text {
+            .contact {
+                font-weight: 700;
+                font-size: 20px;
+                a {
+                    font-weight: 700;
+                    font-size: 20px;
+                    &:hover {
+                        color: $theme-color;
+                    }
+                }
+            }
+            .title {
+                font-size: 14px;
+            }
+        }
+    }
+}
+.team__founder-thumb,
+.bd-skill__thumb,
+.archivement__thumb {
+    overflow: hidden;
+    border-radius: 6px;
+    padding-right: 0px;
+    & img {
+        width: 100%;
+        -webkit-filter: grayscale(100%);
+        -ms-filter: grayscale(100%);
+        -moz-filter: grayscale(100%);
+        border-radius: 6px;
+        width: 100%;
+    }
+    &:hover {
+        & img {
+            transform: scale3d(1.1, 1.1, 1.1);
+            -webkit-filter: grayscale(0%);
+            -ms-filter: grayscale(0%);
+            -moz-filter: grayscale(0%);
+        }
+    }
+}
+
+// Acivement Style
+.archivement {
+    &__box{
+        padding-left: 50px;
+        @include mq(lg) {
+            padding-left: 0px;
+        }
+        @include mq(md) {
+            padding-left: 0px;
+        }
+        @include mq(xs) {
+            padding-left: 0px;
+        }
+        @include mq(sm) {
+            padding-left: 0px;
+        }
+    }
+    &__title h3 {
+        font-size: 26px;
+        margin-bottom: 25px;
+    }
+    &__title {
+        p {
+            margin-bottom: 33px;
+            font-size: 18px;
+            @include mq(lg) {
+                font-size: 16px;
+            }
+        }
+    }
+}
+.hr-1 {
+	border-top: 1px solid $border-color;
+}
+.bd-skill__progress.pr-50 {
+    @include mq(md) {
+        padding-right: 0px;
+    }
+    @include mq(xs) {
+        padding-right: 0px;
+    }
+    @include mq(sm) {
+        padding-right: 0px;
+    }
+}
+.skill__wrapper .progress {
+    height:6px;
+    border-radius:0;
+    background:#e9ebed;
+    position:relative
+  }
+  .skill__wrapper .progress:after {
+    content:"";
+    background:#ff4040;
+    height:100%;
+    width:75%;
+  }
+  .skill__wrapper .progress.progress-two:after {
+    width:88%
+  }
+  .skill__wrapper .progress.progress-three:after {
+    width:80%
+  }

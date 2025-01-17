@@ -59,6 +59,10 @@ export default defineNuxtConfig({
   css: [
     '@core/scss/template/index.scss',
     '@styles/styles.scss',
+    "bootstrap/scss/bootstrap.scss",
+    "swiper/css/bundle",
+    "aos/dist/aos.css",
+    "~/assets/assets-public/scss/main.scss",
   ],
 
   devtools: {
@@ -66,16 +70,21 @@ export default defineNuxtConfig({
   },
 
   components: {
-    dirs: [{
-      path: '@/@core/components',
-      pathPrefix: false,
-    }, {
-      path: '~/components/global',
-      global: true,
-    }, {
-      path: '~/components',
-      pathPrefix: false,
-    }],
+    dirs: [
+      {
+        path: '@/@core/components',
+        pathPrefix: false,
+      }, {
+        path: '~/components/global',
+        global: true,
+      }, {
+        path: '~/components',
+        pathPrefix: false,
+      }, {
+        path: '~/components/components-public', // Inclut le dossier `components-public`
+        pathPrefix: false, // Pas besoin de préfixer les noms des sous-dossiers
+      },
+    ],
   },
 
   plugins: ['@/plugins/vuetify/index.js', '@/plugins/iconify/index.js'],
@@ -134,7 +143,7 @@ export default defineNuxtConfig({
         '@configured-variables': fileURLToPath(new URL('./assets/styles/variables/_template.scss', import.meta.url)),
         '@db': fileURLToPath(new URL('./server/fake-db/', import.meta.url)),
         '@api-utils': fileURLToPath(new URL('./server/utils/', import.meta.url)),
-        '@stores': fileURLToPath(new URL('./stores', import.meta.url)),
+        '@stores': fileURLToPath(new URL('./stores', import.meta.url))
       },
     },
 
@@ -182,6 +191,8 @@ export default defineNuxtConfig({
     optimizeDeps: {
       exclude: ['vuetify'],
       entries: ['./**/*.vue'],
+      include: ['wow.js'],
+
     },
     css: {
       postcss: {

@@ -1,0 +1,212 @@
+.login{
+    &__wrapper{
+        padding: 50px 85px 55px;
+        background: $white-color;
+        box-shadow: 0px 30px 60px rgba(3, 4, 28, 0.1);  
+
+        @include mq(xl){
+            padding: 50px 60px 55px;
+        }
+
+        @include mq(sm){
+            padding: 50px 40px 55px;
+        }
+
+         @include mq(xs){
+            padding: 40px 25px 45px;
+        }
+    }
+    &__title{
+        font-size: 34px;
+        letter-spacing: -0.04em;
+        margin-bottom: 6px;
+    }
+    &__top{
+        & p{
+            font-size: 16px;
+        }
+    }
+    &__input{
+        position: relative;
+        &-wrapper{
+            margin-bottom: 14px;
+        }
+        & input{
+            background: #FFFFFF;
+            border: 1px solid $border-color;
+            padding-left: 20px;
+            padding-right: 20px;
+            height: 60px;
+            line-height: 60px;
+            width: 100%;
+            &:focus{
+                border-color: $theme-color;
+            }
+        }
+        & span{
+            position: absolute;
+            top: 50%;
+            left: 27px;
+            @include transform(translateY(calc(-50% - 3px)));
+        }
+
+        &-item{
+            position: relative;
+            &:not(:last-child){
+                margin-bottom: 20px;
+            }
+            
+            & > span,
+            & .login-input-eye{
+                position: absolute;
+                top: 50%;
+                right: 22px;
+                @include transform(translateY(calc(-50% - 3px)));
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    &__remember{
+        & input[type="checkbox"],
+        & input[type="radio"]{
+            display: none;
+
+            &:checked{
+                & ~ label{
+                    &::after{
+                        background-color: transparent;
+                        border-color: $theme-color;
+                    }
+                    &::before{
+                        @include transform(scale(1));
+                    }
+                }
+            }
+        }
+        & label{
+            font-size: 14px;
+            position: relative;
+            padding-left: 30px;
+            &::after,
+            &::before{
+                position: absolute;
+                content: '';
+                left: 0;
+                top: 2px;
+                width: 20px;
+                height: 20px;
+                background-color: $white-color;
+                border: 1px solid $border-color;
+                @include transition(.2s);
+            }
+            &::before{
+                width: 14px;
+                height: 14px;
+                background-color: $theme-color;
+                left: 3px;
+                top: 5px;
+                right: 3px;
+                bottom: 3px;
+                @include transform(scale(0));
+            }
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+    &__forgot{
+        & a{
+            font-size: 16px;
+            color: $body-color;
+            text-transform: capitalize;
+            &:hover{
+                color: $theme-color;
+            }
+        }
+    }
+    &__btn{
+        margin-bottom: 18px;
+        & .tp-btn{
+            font-size: 18px;
+            padding: 17px 30px;
+
+            &:hover{
+                background-color: $heading-color;
+            }
+        }
+    }
+    &__social{
+        &-header{
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: -0.02em;
+            color: $heading-color;
+            position: relative;
+            display: inline-block;
+            text-align: center;
+            padding: 0 10px;
+            margin-bottom: 25px;
+
+            &::after,
+            &::before{
+                position: absolute;
+                content: '';
+                left: 100%;
+                top: 10px;
+                width: 30px;
+                height: 1px;
+                background-color: $heading-color;
+            }
+            &::before{
+                left: auto;
+                right: 100%;
+            }
+        }
+
+        &-item{
+            & a{
+                display: inline-block;
+                padding: 11px 25px;
+                font-weight: 500;
+                font-size: 14px;
+                background: $white-color;
+                border: 1px solid $border-color;
+                margin-bottom: 20px;
+                margin-right: 5px;
+
+                 @include mq(xs){
+                    width: 100%;
+                    margin-right: 0;
+                }
+                &:last-child{
+                    margin-right: 0;
+                }
+                & .login-social-icon{
+                    margin-right: 3px;
+                    & svg{
+                        @include transform(translateY(-2px));
+                    }
+                }
+                &:hover{
+                    border-color: $theme-color;
+                }
+            }
+        }
+    }
+    &__register{
+        &-now{
+            text-align: center;
+            & p{
+                font-size: 14px;
+                color: #525258;
+                margin-bottom: 0;
+                & a{
+                    color: $theme-color;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}

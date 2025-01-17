@@ -26,3 +26,5 @@ useHead({
   flex-direction: column;
 }
 </style>
+
+<style src="@/plugins/iconify/icons.css" />

@@ -1,0 +1,40 @@
+/* 17. Breadcrumb Css */
+.breadcrumb-spacing{
+    padding-top: 260px;
+    padding-bottom: 155px;
+    background-size: cover;
+     @include mq(xs){
+        padding-top: 240px;  
+    }
+}
+.page-title {
+	color: $white-color;
+	font-size: 50px;
+	font-weight: 700;
+    font-family: $body-fonts;
+	line-height: 1;
+    text-transform: uppercase;
+}
+.breadcrumb-menu {
+	& li {
+        display: inline-block;
+        padding: 0 10px;
+        position: relative;
+        &:not(:last-child)::after {
+            display: inline-block;
+            color: $white-color;
+            content: "/";
+            position: absolute;
+            right: -6px;
+            top: -2px;
+            font-size: 16px;
+        }
+        & span {
+            color: $white-color;
+            @include transition(0.3s);
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+    }
+}

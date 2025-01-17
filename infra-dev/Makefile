@@ -40,7 +40,7 @@ composer-update:
 
 # Exécuter yarn install dans le conteneur Nuxt
 yarn-install:
-	docker exec -it nuxt npm install
+	docker exec -it nuxt yarn install
 
 yarn-build:
 	docker exec -it nuxt yarn build
